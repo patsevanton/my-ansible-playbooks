@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: yes 
+  become_user: root
+  become_method: sudo
+  name: "Get info about redcheckpg"
+  tasks:
+    - name: "Get info about redcheckpg from /var/lib/pgsql/9.*/data/pg_hba.conf"
+      register: redcheckpg9X
+      shell: "cat /var/lib/pgsql/9.*/data/pg_hba.conf | grep redcheckpg"
+    - debug: msg="{{redcheckpg9X.stdout_lines}}"

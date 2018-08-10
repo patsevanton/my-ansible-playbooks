@@ -1,0 +1,8 @@
+---
+- hosts: all
+  name: "get post with not 797 id"
+  tasks:
+    - name: "get post with not 797 id"
+      register: get_post_with_not_797_id
+      shell: "cat /etc/passwd| grep post:x: | grep -v 797"
+    - debug: msg="{{get_post_with_not_797_id.stdout_lines}}"

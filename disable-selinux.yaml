@@ -1,0 +1,12 @@
+---
+- hosts: all
+  name: "Disable Selinux"
+  tasks:
+    - name: "Disable Selinux"
+      shell: "echo 0 > /selinux/enforce"
+    - name: "change enforcing to disable in selinux"
+      shell: "sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config"
+    - name: "change permissive to disable in selinux"
+      shell: "sed -i 's/permissive/disabled/g' /etc/selinux/config /etc/selinux/config"
+    - name: restart server
+      shell: "shutdown -r now"

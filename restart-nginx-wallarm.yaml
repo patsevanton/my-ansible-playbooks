@@ -1,0 +1,8 @@
+---
+- hosts: balancers
+  name: "restart nginx wallarm"
+  tasks:
+    - name: "restart nginx wallarm"
+      register: restart_nginx_wallarm
+      shell: "service nginx-wallarm restart"
+    - debug: msg="{{restart_nginx_wallarm.stdout_lines}}"

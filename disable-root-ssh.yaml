@@ -1,0 +1,13 @@
+---
+- hosts: all
+  sudo: yes
+  name: PermitRootLogin no
+  tasks:
+    - name: PermitRootLogin no
+      lineinfile: 
+        dest: /etc/ssh/sshd_config
+        regexp: '^#PermitRootLogin yes'
+        line: 'PermitRootLogin no'
+        backrefs: yes
+    - name: Restart sshd
+      service: name=sshd state=restarted enabled=yes
